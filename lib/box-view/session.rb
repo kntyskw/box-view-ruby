@@ -79,6 +79,14 @@ module BoxView
         post_params['expires_at'] = params['expires_at']
       end
 
+      if params.has_key? 'is_downloadable'
+        post_params['is_downloadable'] = params['is_downloadable'] ? 'true' : 'false'
+      end
+
+      if params.has_key? 'is_text_selectable'
+        post_params['is_text_selectable'] = params['is_text_selectable'] ? 'true' : 'false'
+      end
+
       session = BoxView._request(self.path, 'post', nil, post_params)
 
       unless session.is_a? Hash and session.has_key? 'id'
